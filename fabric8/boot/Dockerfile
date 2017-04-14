@@ -1,13 +1,18 @@
-FROM %%BASE_IMAGE%%:%%BASE_TAG%%
-MAINTAINER %%MAINTAINER%%
+#
+# NOTE: THIS DOCKERFILE IS GENERATED VIA "update.sh"
+#
+# PLEASE DO NOT EDIT IT DIRECTLY.
+#
+
+FROM fabric8/java-centos-openjdk8-jdk:latest
+MAINTAINER Wes Morgan <wesmorgan@icloud.com>
 
 ENV BOOT_VERSION=2.7.1
 ENV BOOT_INSTALL=/usr/local/bin/
 
 WORKDIR /tmp
 
-%%ALPINE%% RUN apk add --update bash openssl && rm -rf /var/cache/apk/*
-%%FABRIC8%% RUN yum install -y wget
+RUN yum install -y wget
 
 # NOTE: BOOT_VERSION tells the boot.sh script which version of boot to install
 # on its first run. We always download version 2.5.2 of boot.sh because it is

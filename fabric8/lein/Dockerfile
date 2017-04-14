@@ -1,13 +1,18 @@
-FROM %%BASE_IMAGE%%:%%BASE_TAG%%
-MAINTAINER %%MAINTAINER%%
+#
+# NOTE: THIS DOCKERFILE IS GENERATED VIA "update.sh"
+#
+# PLEASE DO NOT EDIT IT DIRECTLY.
+#
+
+FROM fabric8/java-centos-openjdk8-jdk:latest
+MAINTAINER Wes Morgan <wesmorgan@icloud.com>
 
 ENV LEIN_VERSION=2.7.1
 ENV LEIN_INSTALL=/usr/local/bin/
 
 WORKDIR /tmp
 
-%%ALPINE%% RUN apk add --update tar gnupg bash openssl && rm -rf /var/cache/apk/*
-%%FABRIC8%% RUN yum install -y wget
+RUN yum install -y wget
 
 # Download the whole repo as an archive
 RUN mkdir -p $LEIN_INSTALL \
