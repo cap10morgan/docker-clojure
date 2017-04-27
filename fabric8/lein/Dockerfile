@@ -12,7 +12,7 @@ ENV LEIN_INSTALL=/usr/local/bin/
 
 WORKDIR /tmp
 
-RUN yum install -y wget
+RUN yum makecache fast && yum install -y wget
 
 # Download the whole repo as an archive
 RUN mkdir -p $LEIN_INSTALL \
